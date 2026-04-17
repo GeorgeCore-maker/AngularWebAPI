@@ -1,0 +1,10 @@
+{
+  "build": {
+    "builder": "dockerfile",
+    "dockerfilePath": "Dockerfile.core"
+  },
+  "deploy": {
+    "startCommand": "dotnet AngularWebAPI.dll",
+    "restartPolicyType": "always"
+  }
+}
