@@ -1,0 +1,54 @@
+<!-- Toast para notificaciones -->
+<p-toast></p-toast>
+
+<!-- Modal para crear/editar departamento -->
+<p-dialog
+  [header]="isEditMode ? 'Edit Department' : 'New Department'"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [closable]="true"
+  [style]="{width: '450px'}"
+  (onHide)="closeModal()">
+
+  <div class="p-fluid">
+    <div class="field mb-4">
+      <label for="departmentId" class="font-bold">Department ID</label>
+      <input
+        id="departmentId"
+        type="text"
+        pInputText
+        [(ngModel)]="department.DepartmentId"
+        [readonly]="true"
+        class="mt-2" />
+      <small class="text-500">Auto-generated</small>
+    </div>
+
+    <div class="field mb-4">
+      <label for="departmentName" class="font-bold">Department Name *</label>
+      <input
+        id="departmentName"
+        type="text"
+        pInputText
+        [(ngModel)]="department.DepartmentName"
+        placeholder="Enter department name"
+        class="mt-2"
+        required />
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Cancel"
+      icon="pi pi-times"
+      severity="secondary"
+      [text]="true"
+      (onClick)="closeModal()">
+    </p-button>
+    <p-button
+      [label]="isEditMode ? 'Update' : 'Save'"
+      icon="pi pi-check"
+      (onClick)="saveDepartment()"
+      [disabled]="!department.DepartmentName">
+    </p-button>
+  </ng-template>
+</p-dialog>

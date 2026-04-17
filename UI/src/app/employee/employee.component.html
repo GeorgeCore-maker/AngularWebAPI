@@ -1,0 +1,82 @@
+<div class="m-3">
+  <div class="card">
+    <!-- Toolbar con botón de crear -->
+    <p-toolbar styleClass="mb-4">
+      <ng-template pTemplate="left">
+        <h2 class="m-0">Employees</h2>
+      </ng-template>
+      <ng-template pTemplate="right">
+        <p-button
+          label="New Employee"
+          icon="pi pi-plus"
+          severity="success"
+          (onClick)="openNewEmployee()">
+        </p-button>
+      </ng-template>
+    </p-toolbar>
+
+    <!-- Tabla de empleados -->
+    <p-table [value]="employeeList" styleClass="p-datatable-gridlines" [tableStyle]="{ 'min-width': '60rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Photo</th>
+          <th>Employee ID</th>
+          <th>Employee Name</th>
+          <th>Department</th>
+          <th>Date of Joining</th>
+          <th>Options</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-employee>
+        <tr>
+          <td>
+            <p-avatar
+              *ngIf="employee.PhotoFileName && employee.PhotoFileName !== '' && employee.PhotoFileName !== 'anonymous.png'"
+              [image]="photoURL + employee.PhotoFileName"
+              size="large"
+              shape="circle">
+            </p-avatar>
+            <p-avatar
+              *ngIf="!employee.PhotoFileName || employee.PhotoFileName === '' || employee.PhotoFileName === 'anonymous.png'"
+              icon="pi pi-user"
+              size="large"
+              shape="circle"
+              [style]="{'background-color': '#dee2e6', 'color': '#6c757d'}">
+            </p-avatar>
+          </td>
+          <td>{{ employee.EmployeeId }}</td>
+          <td>{{ employee.EmployeeName }}</td>
+          <td>{{ getDepartmentName(employee.Department) }}</td>
+          <td>{{ employee.DateOfJoining | date:'dd/MM/yyyy' }}</td>
+          <td>
+            <p-button
+              icon="pi pi-pencil"
+              severity="info"
+              [rounded]="true"
+              [text]="true"
+              pTooltip="Edit"
+              (onClick)="editEmployee(employee)">
+            </p-button>
+            <p-button
+              icon="pi pi-trash"
+              severity="danger"
+              [rounded]="true"
+              [text]="true"
+              pTooltip="Delete"
+              (onClick)="deleteEmployee(employee)">
+            </p-button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- Componente modal -->
+  <app-show-employee
+    [(displayModal)]="displayModal"
+    [isEditMode]="isEditMode"
+    [employee]="employee"
+    [departmentList]="departmentList"
+    (onSave)="onModalSave()">
+  </app-show-employee>
+</div>

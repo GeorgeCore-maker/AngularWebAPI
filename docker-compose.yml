@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # SQL Server Database
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: employeedb-sql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourPassword123!
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+      - ./Database:/docker-entrypoint-initdb.d
+    networks:
+      - employee-network
+
+  # Web API (requires manual build)
+  # webapi:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.api
+  #   container_name: employee-api
+  #   ports:
+  #     - "8080:80"
+  #   depends_on:
+  #     - sqlserver
+  #   environment:
+  #     - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=EmployeeManagementDB;User Id=sa;Password=YourPassword123!;TrustServerCertificate=true
+  #   networks:
+  #     - employee-network
+
+volumes:
+  sqlserver_data:
+
+networks:
+  employee-network:
+    driver: bridge

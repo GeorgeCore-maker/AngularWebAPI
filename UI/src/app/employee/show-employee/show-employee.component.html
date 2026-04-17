@@ -1,0 +1,127 @@
+<!-- Toast para notificaciones -->
+<p-toast></p-toast>
+
+<!-- Modal para crear/editar empleado -->
+<p-dialog
+  [header]="isEditMode ? 'Edit Employee' : 'New Employee'"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [closable]="true"
+  [style]="{width: '550px'}"
+  (onHide)="closeModal()">
+
+  <div class="p-fluid">
+    <!-- Employee ID -->
+    <div class="field mb-4">
+      <label for="employeeId" class="font-bold">Employee ID</label>
+      <input
+        id="employeeId"
+        type="text"
+        pInputText
+        [(ngModel)]="employee.EmployeeId"
+        [readonly]="true"
+        class="mt-2" />
+      <small class="text-500">Auto-generated</small>
+    </div>
+
+    <!-- Employee Name -->
+    <div class="field mb-4">
+      <label for="employeeName" class="font-bold">Employee Name *</label>
+      <input
+        id="employeeName"
+        type="text"
+        pInputText
+        [(ngModel)]="employee.EmployeeName"
+        placeholder="Enter employee name"
+        class="mt-2"
+        required />
+    </div>
+
+    <!-- Department -->
+    <div class="field mb-4">
+      <label for="department" class="font-bold">Department *</label>
+      <p-dropdown
+        id="department"
+        [(ngModel)]="employee.Department"
+        [options]="departmentList"
+        optionLabel="DepartmentName"
+        optionValue="DepartmentId"
+        placeholder="Select a department"
+        class="mt-2"
+        [style]="{'width': '100%'}">
+      </p-dropdown>
+    </div>
+
+    <!-- Date of Joining -->
+    <div class="field mb-4">
+      <label for="dateOfJoining" class="font-bold">Date of Joining *</label>
+      <p-calendar
+        id="dateOfJoining"
+        [(ngModel)]="employee.DateOfJoining"
+        placeholder="Select date"
+        dateFormat="dd/mm/yy"
+        [showIcon]="true"
+        [inline]="false"
+        [monthNavigator]="true"
+        [yearNavigator]="true"
+        yearRange="2000:2030"
+        [showButtonBar]="true"
+        [appendTo]="'body'"
+        class="mt-2"
+        [style]="{'width': '100%'}">
+      </p-calendar>
+    </div>
+
+    <!-- Photo Upload -->
+    <div class="field mb-4">
+      <label for="photo" class="font-bold">Photo</label>
+
+      <div class="flex align-items-center gap-3 mt-2">
+        <!-- Imagen cuadrada cuando hay foto -->
+        <div *ngIf="employee.PhotoFileName && employee.PhotoFileName !== '' && employee.PhotoFileName !== 'anonymous.png'"
+             class="photo-preview">
+          <img [src]="photoURL + employee.PhotoFileName"
+               alt="Employee Photo"
+               class="employee-photo-large"
+               (error)="onImageError($event)">
+        </div>
+        <!-- Avatar por defecto cuando no hay foto -->
+        <p-avatar
+          *ngIf="!employee.PhotoFileName || employee.PhotoFileName === '' || employee.PhotoFileName === 'anonymous.png'"
+          icon="pi pi-user"
+          size="xlarge"
+          shape="circle"
+          [style]="{'background-color': '#dee2e6', 'color': '#6c757d'}">
+        </p-avatar>
+        <div class="flex-1">
+          <p-fileUpload
+            mode="basic"
+            chooseLabel="Choose Photo"
+            accept="image/*"
+            [maxFileSize]="1000000"
+            (onSelect)="onFileSelect($event)"
+            [auto]="false">
+          </p-fileUpload>
+          <small class="text-500 block mt-1">Optional - Max 1MB</small>
+          <small *ngIf="employee.PhotoFileName" class="text-600 block mt-1">Current: {{employee.PhotoFileName}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Cancel"
+      icon="pi pi-times"
+      severity="secondary"
+      [text]="true"
+      (onClick)="closeModal()">
+    </p-button>
+    <p-button
+      [label]="isEditMode ? 'Update' : 'Save'"
+      icon="pi pi-check"
+      (onClick)="saveEmployee()"
+      [disabled]="!employee.EmployeeName || !employee.Department || !employee.DateOfJoining">
+    </p-button>
+  </ng-template>
+</p-dialog>

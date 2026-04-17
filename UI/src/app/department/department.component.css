@@ -1,0 +1,22 @@
+/* Estilo para el header de la tabla */
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background-color: #3b82f6 !important;
+  color: white !important;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th:hover {
+  background-color: #2563eb !important;
+}
+
+/* Reducir altura de las filas de la tabla */
+::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  padding: 0.5rem 1rem;
+}
+
+/* Ajustar el tamaño de los botones en las filas */
+::ng-deep .p-datatable .p-datatable-tbody > tr > td .p-button {
+  width: 2rem;
+  height: 2rem;
+}
