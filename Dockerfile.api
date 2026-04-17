@@ -1,12 +1,19 @@
+# Use the official .NET Framework runtime image
 FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019
 
 # Set the working directory
 WORKDIR /inetpub/wwwroot
 
-# Copy the published application
-COPY ./WebAPI/WebApplication1/ ./
+# Copy the application files
+COPY WebAPI/WebApplication1/ .
 
 # Expose port 80
 EXPOSE 80
 
-# The base image already has IIS configured
+# Create Photos directory if it doesn't exist
+RUN if not exist "Photos" mkdir Photos
+
+# Set permissions for Photos directory
+RUN icacls "Photos" /grant "IIS_IUSRS:(OI)(CI)F" /T
+
+# The base image already has IIS configured and will start automatically

@@ -1,0 +1,13 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile.core"
+
+[deploy]
+healthcheckPath = "/api/Department"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+
+[env]
+ASPNETCORE_ENVIRONMENT = "Production"
+ASPNETCORE_URLS = "http://0.0.0.0:$PORT"
