@@ -30,15 +30,15 @@ jobs:
         cd UI
         npm run build -- --base-href="/AngularWebAPI/"
         
-    - name: Copy 404.html to dist
+    - name: Copy 404.html to browser folder
       run: |
-        cp ./UI/public/404.html ./UI/dist/ui/404.html
+        cp ./UI/public/404.html ./UI/dist/ui/browser/404.html
         
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       if: github.ref == 'refs/heads/main'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./UI/dist/ui
+        publish_dir: ./UI/dist/ui/browser
         force_orphan: true
         cname: false
