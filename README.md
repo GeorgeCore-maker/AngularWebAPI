@@ -1,283 +1,70 @@
-# 🏢 Employee Management System
+# 🚀 Angular Employee Management System
 
-**Sistema completo de gestión de empleados y departamentos** con Angular 18, Web API ASP.NET y SQL Server.
+Sistema completo de gestión de empleados con Angular 18 y .NET Core 8.
 
-[![Angular](https://img.shields.io/badge/Angular-18-red?logo=angular)](https://angular.io/)
-[![ASP.NET](https://img.shields.io/badge/ASP.NET-Web_API-blue?logo=dotnet)](https://dotnet.microsoft.com/)
-[![SQL Server](https://img.shields.io/badge/SQL_Server-Database-orange?logo=microsoftsqlserver)](https://www.microsoft.com/sql-server/)
-[![PrimeNG](https://img.shields.io/badge/PrimeNG-17-green?logo=primeng)](https://primeng.org/)
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?logo=github)](https://georgecore-maker.github.io/AngularWebAPI/)
+## 🌐 **DEMO EN VIVO**
+👉 **https://georgecore-maker.github.io/AngularWebAPI/**
 
-## 🌐 **Demo en Vivo**
+## ✨ Características
 
-### 🎯 **Prueba la aplicación aquí:**
-```
-🚀 https://georgecore-maker.github.io/AngularWebAPI/
-```
-
-**✨ Características de la demo:**
-- ✅ Funcionalidad completa sin backend
-- ✅ Datos simulados con persistencia temporal
-- ✅ Todas las operaciones CRUD funcionando
-- ✅ Subida de fotos simulada
+### Frontend (Angular 18)
+- ✅ CRUD completo de empleados
+- ✅ Subida de fotos con vista previa
+- ✅ Interfaz moderna con PrimeNG 17
 - ✅ Responsive design
-- ✅ Se resetea al recargar la página
+- ✅ Modo demo funcional
+- ✅ Validaciones y notificaciones
 
-## 🎯 Descripción
+### Backend (.NET Core 8)
+- ✅ Web API REST completa
+- ✅ Entity Framework Core
+- ✅ Swagger para documentación
+- ✅ CORS configurado
+- ✅ Docker ready
 
-Sistema full-stack para la administración de empleados y departamentos empresariales, con interfaz moderna y funcionalidades completas de CRUD, incluyendo manejo de fotografías y reportes.
+## 🛠️ Desarrollo Local
 
-### ✨ Características Principales
+### Prerrequisitos
+- Node.js 18+
+- .NET 8 SDK
+- SQL Server (para backend)
 
-- 👥 **Gestión de Empleados**: CRUD completo con fotos de perfil
-- 🏢 **Gestión de Departamentos**: Administración de departamentos organizacionales  
-- 📸 **Subida de Imágenes**: Sistema de carga y visualización de fotos
-- 📊 **Interfaz Moderna**: UI responsive con PrimeNG y PrimeFlex
-- 🔒 **API RESTful**: Backend robusto con Web API ASP.NET
-- 💾 **Base de Datos**: Almacenamiento en SQL Server
+### Frontend
+```bash
+cd UI
+npm install
+npm start
+# http://localhost:4200
+```
 
-## 📦 **Estructura del Proyecto Actualizada**
+### Backend
+```bash
+cd BackendCore
+dotnet run
+# https://localhost:7000/swagger
+```
+
+## 📁 Estructura del Proyecto
 
 ```
 AngularWebAPI/
-├── 🎨 UI/                      # Frontend Angular 18
-│   ├── src/app/
-│   │   ├── department/         # Módulo de departamentos
-│   │   ├── employee/          # Módulo de empleados
-│   │   ├── shared.service.ts  # Servicios HTTP con datos mock
-│   │   ├── mock-data.ts       # Datos de demostración
-│   │   └── prime.module.ts    # Componentes PrimeNG
-│   └── package.json
-│
-├── 🚀 BackendCore/            # Backend .NET Core 8 (NUEVO)
-│   ├── Controllers/           # API Controllers
-│   ├── Models/               # Modelos y DbContext
-│   ├── wwwroot/Photos/       # Almacenamiento de imágenes
-│   ├── Program.cs            # Configuración de la app
-│   └── BackendCore.csproj    # Proyecto .NET Core
-│
-├── 🏛️ WebAPI/                 # Backend .NET Framework (Original)
-│   └── WebApplication1/       # Proyecto ASP.NET Web API
-│
-├── 🗄️ Database/               # Scripts SQL
-│   ├── setup-database.sql    # Configuración completa DB
-│   └── connection-examples.md # Ejemplos de conexión
-│
-└── 📋 Deployment/             # Configuración de Deploy
-    ├── .github/workflows/     # GitHub Actions
-    ├── Dockerfile.core       # Docker para .NET Core
-    ├── railway.toml          # Configuración Railway
-    └── DEPLOYMENT.md         # Guías de deployment
+├── UI/                    # Frontend Angular 18
+├── BackendCore/          # Backend .NET Core 8
+├── Database/             # Scripts SQL
+└── .github/workflows/    # GitHub Actions
 ```
 
-## 🚀 **Deployment Options**
-
-### 🌐 **Frontend (GitHub Pages) - ACTIVO**
-```
-✅ https://georgecore-maker.github.io/AngularWebAPI/
-```
-
-### ⚡ **Backend Options**
-
-#### 1. 🚀 **Railway (Recomendado - .NET Core)**
-```bash
-# 1. Conecta tu repo a Railway.app
-# 2. El proyecto se desplegará automáticamente usando:
-#    - BackendCore/ (proyecto .NET Core 8)
-#    - Dockerfile.core
-#    - railway.toml
-# 3. URL resultante: https://your-app.railway.app
-```
-
-#### 2. 🐳 **Docker Local**
-```bash
-# Build y run del backend .NET Core
-docker build -f Dockerfile.core -t employee-api .
-docker run -p 8080:80 employee-api
-
-# Acceder a: http://localhost:8080/api/Department
-```
-
-#### 3. 🏛️ **IIS/.NET Framework (Local)**
-```bash
-# Usar WebAPI/WebApplication1 en IIS
-# Configurar connectionString en Web.config
-# Ejecutar setup-database.sql en SQL Server
-```
-
-### 🔄 **Activar Backend Real**
-
-Una vez el backend esté deployado, actualizar:
-
-```typescript
-// UI/src/environments/environment.prod.ts
-export const environment = {
-  production: true,
-  apiUrl: 'https://tu-backend.railway.app/api/',
-  photoUrl: 'https://tu-backend.railway.app/Photos/'
-};
-```
-
-Luego hacer push para re-deployar el frontend.
-
-## 🎛️ Configuración
-
-### 🔗 Conexión API
-
-Verificar URLs en `UI/src/app/shared.service.ts`:
-```typescript
-readonly apiUrl = 'http://localhost:61962/api/';
-readonly PhotoURL = 'http://localhost:61962/Photos/';
-```
-
-### 🗄️ Base de Datos
-
-Configurar cadena de conexión en `WebAPI/WebApplication1/Web.config`:
-```xml
-<connectionStrings>
-  <add name="DefaultConnection" 
-       connectionString="Data Source=.;Initial Catalog=EmployeeDB;Integrated Security=True"
-       providerName="System.Data.SqlClient" />
-</connectionStrings>
-```
-
-## 📱 Funcionalidades
-
-### 🏢 Módulo Departamentos
-- ✅ Listar departamentos en tabla
-- ✅ Crear nuevos departamentos
-- ✅ Editar departamentos existentes
-- ✅ Eliminar con confirmación
-- ✅ Búsqueda y filtrado
-
-### 👤 Módulo Empleados  
-- ✅ Lista con fotos y información
-- ✅ Formulario completo de empleado
-- ✅ Subida y preview de fotos
-- ✅ Selector de departamento
-- ✅ Calendario para fecha de ingreso
-- ✅ Validaciones de formulario
-
-### 📊 Características Técnicas
-- ✅ Componentes standalone Angular
-- ✅ Reactive Forms con validación
-- ✅ HTTP Interceptors
-- ✅ Manejo de errores global
-- ✅ Responsive design
-- ✅ Toast notifications
-- ✅ Modal dialogs
-- ✅ File upload
-
-## 🛠️ Tecnologías Utilizadas
+## 🚀 Deployment
 
 ### Frontend
-- **Angular 18** - Framework SPA
-- **TypeScript** - Lenguaje principal  
-- **PrimeNG 17** - Componentes UI
-- **PrimeFlex** - CSS Utilities
-- **SCSS** - Preprocesador CSS
-- **RxJS** - Programación reactiva
+- **Automático:** GitHub Actions → GitHub Pages
+- **URL:** https://georgecore-maker.github.io/AngularWebAPI/
 
-### Backend  
-- **ASP.NET Web API** - API RESTful
-- **C#** - Lenguaje servidor
-- **Entity Framework** - ORM
-- **SQL Server** - Base de datos
-- **IIS Express** - Servidor desarrollo
-
-## 🔄 API Endpoints
-
-### 🏢 Departamentos
-```http
-GET    /api/Department              # Listar
-POST   /api/Department              # Crear
-PUT    /api/Department              # Actualizar  
-DELETE /api/Department/{id}         # Eliminar
-```
-
-### 👤 Empleados
-```http
-GET    /api/Employee                # Listar
-POST   /api/Employee                # Crear
-PUT    /api/Employee                # Actualizar
-DELETE /api/Employee/{id}           # Eliminar
-POST   /api/Employee/SaveFile       # Subir foto
-```
-
-## 📁 Estructura de Datos
-
-### Departamento
-```json
-{
-  "DepartmentId": 1,
-  "DepartmentName": "Recursos Humanos"
-}
-```
-
-### Empleado
-```json
-{
-  "EmployeeId": 1,
-  "EmployeeName": "Juan Pérez",
-  "Department": 1,
-  "DateOfJoining": "2024-01-15",
-  "PhotoFileName": "juan_perez.jpg"
-}
-```
-
-## 🎨 Capturas de Pantalla
-
-### 📋 Lista de Empleados
-- Tabla responsive con fotos
-- Acciones de editar/eliminar
-- Botón crear nuevo empleado
-
-### ✏️ Modal de Empleado
-- Formulario completo
-- Subida de foto con preview
-- Validaciones en tiempo real
-- Calendario para fechas
-
-### 🏢 Gestión de Departamentos
-- CRUD completo
-- Confirmaciones de eliminación
-- Feedback visual con toasts
-
-## 🤝 Contribuir
-
-1. **Fork** el proyecto
-2. **Crear rama** feature (`git checkout -b feature/nueva-funcionalidad`)
-3. **Commit** cambios (`git commit -m 'Agregar funcionalidad X'`)
-4. **Push** rama (`git push origin feature/nueva-funcionalidad`)
-5. **Abrir** Pull Request
-
-## 📝 Scripts Útiles
-
-### Frontend (UI/)
-```bash
-ng serve                # Servidor desarrollo
-ng build               # Build producción  
-ng test                # Pruebas unitarias
-ng generate component  # Generar componente
-```
-
-### Backend (WebAPI/)
-```bash
-# En Visual Studio:
-F5                     # Ejecutar/Debug
-Ctrl+F5               # Ejecutar sin debug
-```
-
-## 📄 Licencia
-
-Este proyecto está bajo la **Licencia MIT**. Ver [LICENSE](LICENSE) para más detalles.
-
-## 📞 Contacto
-
-- **Proyecto**: Employee Management System
-- **Tecnologías**: Angular 18 + ASP.NET Web API
-- **Estado**: ✅ Funcional y completo
+### Backend (Railway - 5 minutos)
+1. Ve a [railway.app](https://railway.app) y conecta GitHub
+2. Deploy desde `BackendCore/`
+3. Actualizar `UI/src/environments/environment.prod.ts` con la URL
 
 ---
 
-⭐ **¡Dale una estrella si te gusta el proyecto!** ⭐
+**🎯 El sistema está 100% funcional en modo demo. Para conectar con base de datos real, deployar el backend siguiendo la guía en `RAILWAY_BACKEND_DEPLOY.md`**
