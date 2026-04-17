@@ -6,17 +6,17 @@ EXPOSE 8080
 # Use the SDK image to build the app
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["AngularWebAPI.csproj", "./"]
-RUN dotnet restore "AngularWebAPI.csproj"
+COPY ["BackendCore.csproj", "./"]
+RUN dotnet restore "BackendCore.csproj"
 COPY . .
-RUN dotnet build "AngularWebAPI.csproj" -c Release -o /app/build
+RUN dotnet build "BackendCore.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "AngularWebAPI.csproj" -c Release -o /app/publish
+RUN dotnet publish "BackendCore.csproj" -c Release -o /app/publish
 
 # Final stage
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
-ENTRYPOINT ["dotnet", "AngularWebAPI.dll"]
+ENTRYPOINT ["dotnet", "BackendCore.dll"]
