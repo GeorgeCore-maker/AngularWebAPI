@@ -11,7 +11,7 @@ export class SharedService {
 
   readonly apiUrl = environment.apiUrl;
   readonly PhotoURL = environment.photoUrl;
-  
+
   // Simulador de datos para demo
   private mockDepartments = [...mockData.departments];
   private mockEmployees = [...mockData.employees];
@@ -39,9 +39,9 @@ constructor(private http: HttpClient) { }
 
   addDepartment(department: any): Observable<any> {
     if (this.useMockData()) {
-      const newDept = { 
-        ...department, 
-        DepartmentId: this.nextDepartmentId++ 
+      const newDept = {
+        ...department,
+        DepartmentId: this.nextDepartmentId++
       };
       this.mockDepartments.push(newDept);
       return this.simulateDelay(newDept);
@@ -82,8 +82,8 @@ constructor(private http: HttpClient) { }
 
   addEmployee(employee: any): Observable<any> {
     if (this.useMockData()) {
-      const newEmp = { 
-        ...employee, 
+      const newEmp = {
+        ...employee,
         EmployeeId: this.nextEmployeeId++,
         PhotoFileName: employee.PhotoFileName || 'anonymous.png'
       };

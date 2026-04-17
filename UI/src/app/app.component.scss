@@ -9,17 +9,17 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  
+
   a {
     color: #ffffff;
     text-decoration: underline;
     font-weight: 500;
-    
+
     &:hover {
       color: #f0f0f0;
     }
   }
-  
+
   strong {
     background: rgba(255,255,255,0.2);
     padding: 2px 8px;

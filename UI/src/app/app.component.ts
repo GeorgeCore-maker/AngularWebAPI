@@ -14,7 +14,7 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent {
   title = 'UI';
-  
+
   // Detectar si es modo demo
   isDemo = environment.production;
 
