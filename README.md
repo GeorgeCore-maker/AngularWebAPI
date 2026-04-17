@@ -36,62 +36,89 @@ Sistema full-stack para la administración de empleados y departamentos empresar
 - 🔒 **API RESTful**: Backend robusto con Web API ASP.NET
 - 💾 **Base de Datos**: Almacenamiento en SQL Server
 
-## 🏗️ Arquitectura del Proyecto
+## 📦 **Estructura del Proyecto Actualizada**
 
 ```
 AngularWebAPI/
-├── 🎨 UI/                     # Frontend Angular 18
+├── 🎨 UI/                      # Frontend Angular 18
 │   ├── src/app/
-│   │   ├── department/        # Módulo de departamentos
+│   │   ├── department/         # Módulo de departamentos
 │   │   ├── employee/          # Módulo de empleados
-│   │   ├── shared.service.ts  # Servicios HTTP
+│   │   ├── shared.service.ts  # Servicios HTTP con datos mock
+│   │   ├── mock-data.ts       # Datos de demostración
 │   │   └── prime.module.ts    # Componentes PrimeNG
 │   └── package.json
 │
-└── 🚀 WebAPI/                 # Backend ASP.NET
-    ├── WebApplication1/
-    │   ├── Controllers/       # Controladores API
-    │   ├── Models/           # Modelos de datos
-    │   ├── Photos/           # Almacenamiento de imágenes
-    │   └── Web.config        # Configuración
-    └── WebApplication1.sln
+├── 🚀 BackendCore/            # Backend .NET Core 8 (NUEVO)
+│   ├── Controllers/           # API Controllers
+│   ├── Models/               # Modelos y DbContext
+│   ├── wwwroot/Photos/       # Almacenamiento de imágenes
+│   ├── Program.cs            # Configuración de la app
+│   └── BackendCore.csproj    # Proyecto .NET Core
+│
+├── 🏛️ WebAPI/                 # Backend .NET Framework (Original)
+│   └── WebApplication1/       # Proyecto ASP.NET Web API
+│
+├── 🗄️ Database/               # Scripts SQL
+│   ├── setup-database.sql    # Configuración completa DB
+│   └── connection-examples.md # Ejemplos de conexión
+│
+└── 📋 Deployment/             # Configuración de Deploy
+    ├── .github/workflows/     # GitHub Actions
+    ├── Dockerfile.core       # Docker para .NET Core
+    ├── railway.toml          # Configuración Railway
+    └── DEPLOYMENT.md         # Guías de deployment
 ```
 
-## 🚀 Inicio Rápido
+## 🚀 **Deployment Options**
 
-### 📋 Prerrequisitos
+### 🌐 **Frontend (GitHub Pages) - ACTIVO**
+```
+✅ https://georgecore-maker.github.io/AngularWebAPI/
+```
 
-- **Node.js** 18+ y **npm**
-- **Visual Studio** 2019+ o **Visual Studio Code**
-- **SQL Server** (Express/LocalDB suficiente)
-- **Angular CLI** 18+
+### ⚡ **Backend Options**
 
-### ⚡ Instalación
+#### 1. 🚀 **Railway (Recomendado - .NET Core)**
+```bash
+# 1. Conecta tu repo a Railway.app
+# 2. El proyecto se desplegará automáticamente usando:
+#    - BackendCore/ (proyecto .NET Core 8)
+#    - Dockerfile.core
+#    - railway.toml
+# 3. URL resultante: https://your-app.railway.app
+```
 
-1. **Clonar el repositorio**
-   ```bash
-   git clone <url-repositorio>
-   cd AngularWebAPI
-   ```
+#### 2. 🐳 **Docker Local**
+```bash
+# Build y run del backend .NET Core
+docker build -f Dockerfile.core -t employee-api .
+docker run -p 8080:80 employee-api
 
-2. **Configurar Backend (WebAPI)**
-   ```bash
-   cd WebAPI
-   # Abrir WebApplication1.sln en Visual Studio
-   # Configurar cadena de conexión en Web.config
-   # Ejecutar/Debug (F5)
-   ```
+# Acceder a: http://localhost:8080/api/Department
+```
 
-3. **Configurar Frontend (Angular)**
-   ```bash
-   cd UI
-   npm install
-   ng serve
-   ```
+#### 3. 🏛️ **IIS/.NET Framework (Local)**
+```bash
+# Usar WebAPI/WebApplication1 en IIS
+# Configurar connectionString en Web.config
+# Ejecutar setup-database.sql en SQL Server
+```
 
-4. **Acceder a la aplicación**
-   - Frontend: `http://localhost:4200`
-   - API: `http://localhost:61962/api`
+### 🔄 **Activar Backend Real**
+
+Una vez el backend esté deployado, actualizar:
+
+```typescript
+// UI/src/environments/environment.prod.ts
+export const environment = {
+  production: true,
+  apiUrl: 'https://tu-backend.railway.app/api/',
+  photoUrl: 'https://tu-backend.railway.app/Photos/'
+};
+```
+
+Luego hacer push para re-deployar el frontend.
 
 ## 🎛️ Configuración
 
