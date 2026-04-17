@@ -6,6 +6,22 @@
 [![ASP.NET](https://img.shields.io/badge/ASP.NET-Web_API-blue?logo=dotnet)](https://dotnet.microsoft.com/)
 [![SQL Server](https://img.shields.io/badge/SQL_Server-Database-orange?logo=microsoftsqlserver)](https://www.microsoft.com/sql-server/)
 [![PrimeNG](https://img.shields.io/badge/PrimeNG-17-green?logo=primeng)](https://primeng.org/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?logo=github)](https://georgecore-maker.github.io/AngularWebAPI/)
+
+## 🌐 **Demo en Vivo**
+
+### 🎯 **Prueba la aplicación aquí:**
+```
+🚀 https://georgecore-maker.github.io/AngularWebAPI/
+```
+
+**✨ Características de la demo:**
+- ✅ Funcionalidad completa sin backend
+- ✅ Datos simulados con persistencia temporal
+- ✅ Todas las operaciones CRUD funcionando
+- ✅ Subida de fotos simulada
+- ✅ Responsive design
+- ✅ Se resetea al recargar la página
 
 ## 🎯 Descripción
 
